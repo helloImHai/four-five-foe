@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import GameGrid from "./components/GameGrid.js";
+import { Box, Container } from "@material-ui/core";
+import {
+  makeStyles,
+  createMuiTheme,
+  ThemeProvider,
+} from "@material-ui/core/styles";
+
+const theme = createMuiTheme({
+  palette: {
+    type: "light",
+  },
+});
+
+const useStyles = makeStyles({
+  indexContainer: {
+    marginLeft: "auto",
+    textAlign: "center",
+  },
+  indexBox: {
+    minHeight: "100vh",
+  },
+});
 
 function App() {
+  const classes = useStyles;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Box className={classes.indexBox} bgcolor="background.default">
+        <Container className={classes.indexContainer} maxWidth="lg">
+          <br />
+          <br />
+          <br />
+          <GameGrid />
+        </Container>
+      </Box>
+    </ThemeProvider>
   );
 }
 
