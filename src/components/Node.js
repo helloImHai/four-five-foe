@@ -13,15 +13,26 @@ const useStyles = makeStyles({
   picked: {
     borderRadius: "0px",
     "&:disabled": {
-      color: "#000",
+      color: "#333",
+    },
+  },
+  winningCell: {
+    borderRadius: "0px",
+    "&:disabled": {
+      backgroundColor: "#98FB98",
+      color: "#677",
     },
   },
 });
 
 export default function Node(props) {
   const classes = useStyles();
-  const { col, row, player, clicked, isGameOver } = props;
-  const cellType = player === -1 ? classes.unpicked : classes.picked;
+  const { col, row, player, clicked, isGameOver, isWinningCell } = props;
+  const cellType = isWinningCell
+    ? classes.winningCell
+    : player === -1
+    ? classes.unpicked
+    : classes.picked;
   const isDisabled = player !== -1 || isGameOver;
   return (
     <IconButton
