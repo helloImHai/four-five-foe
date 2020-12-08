@@ -1,10 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import openSocket from "socket.io-client";
 
-/*
- There's no security so please don't break my server and I set this as public 
- so please be kind to my server
- */
 const serverUrl = "https://backboardd.herokuapp.com/";
 
 const SocketContext = React.createContext();
