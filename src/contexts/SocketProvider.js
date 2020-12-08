@@ -5,7 +5,7 @@ import openSocket from "socket.io-client";
  There's no security so please don't break my server and I set this as public 
  so please be kind to my server
  */
-const serverUrl = "http://34.235.115.247:8000";
+const serverUrl = "https://34.235.115.247:8000";
 
 const SocketContext = React.createContext();
 const OpenNewSocketContext = React.createContext();
