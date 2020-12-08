@@ -20,20 +20,36 @@ const useStyles = makeStyles({
     borderRadius: "0px",
     "&:disabled": {
       backgroundColor: "#98FB98",
-      color: "#677",
+      color: "#333",
+    },
+  },
+  lastMove: {
+    borderRadius: "0px",
+    "&:disabled": {
+      backgroundColor: "#FDFD96",
+      color: "#333",
     },
   },
 });
 
 export default function Node(props) {
   const classes = useStyles();
-  const { col, row, player, clicked, isGameOver, isWinningCell } = props;
+  const {
+    col,
+    row,
+    player,
+    clicked,
+    isDisabled,
+    isWinningCell,
+    isLastMove,
+  } = props;
   const cellType = isWinningCell
     ? classes.winningCell
+    : isLastMove
+    ? classes.lastMove
     : player === -1
     ? classes.unpicked
     : classes.picked;
-  const isDisabled = player !== -1 || isGameOver;
   return (
     <IconButton
       onClick={() => clicked(row, col)}

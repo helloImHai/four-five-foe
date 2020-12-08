@@ -1,11 +1,12 @@
 import "./App.css";
-import GameGrid from "./components/GameGrid.js";
-import { Box, Container } from "@material-ui/core";
-import {
-  makeStyles,
-  createMuiTheme,
-  ThemeProvider,
-} from "@material-ui/core/styles";
+import Game from "./container/Game.js";
+import Home from "./container/Home.js";
+import Lobby from "./container/Lobby.js";
+import Instructions from "./components/Instructions";
+import { SocketProvider } from "./contexts/SocketProvider.js";
+import { PlayerProvider } from "./contexts/PlayerProvider.js";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({
   palette: {
@@ -13,28 +14,19 @@ const theme = createMuiTheme({
   },
 });
 
-const useStyles = makeStyles({
-  indexContainer: {
-    marginLeft: "auto",
-    textAlign: "center",
-  },
-  indexBox: {
-    minHeight: "100vh",
-  },
-});
-
 function App() {
-  const classes = useStyles;
   return (
     <ThemeProvider theme={theme}>
-      <Box className={classes.indexBox} bgcolor="background.default">
-        <Container className={classes.indexContainer} maxWidth="lg">
-          <br />
-          <br />
-          <br />
-          <GameGrid />
-        </Container>
-      </Box>
+      <SocketProvider>
+        <PlayerProvider>
+          <Router>
+            <Route path="/" exact component={Home} />
+            <Route path="/lobby" component={Lobby} />
+            <Route path="/game" component={Game} />
+            <Instructions />
+          </Router>
+        </PlayerProvider>
+      </SocketProvider>
     </ThemeProvider>
   );
 }
