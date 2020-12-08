@@ -39,7 +39,7 @@ export default function Lobby() {
   useEffect(() => {
     if (socket == null) return;
     socket.on("game_started", () => {
-      history.push("/game");
+      history.push("/four-five-foe/game");
     });
     socket.on("game_state", (payload) => {
       const { players } = payload;

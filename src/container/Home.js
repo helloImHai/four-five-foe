@@ -41,7 +41,7 @@ export default function Home() {
 
     socket.on("joined_room", (payload) => {
       setPlayerState((playerState) => ({ ...playerState, gameId: payload }));
-      history.push("/lobby");
+      history.push("/four-five-foe/lobby");
     });
 
     socket.on("join_room_failure", () => {

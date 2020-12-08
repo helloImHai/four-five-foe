@@ -20,9 +20,9 @@ function App() {
       <SocketProvider>
         <PlayerProvider>
           <Router>
-            <Route path="/" exact component={Home} />
-            <Route path="/lobby" component={Lobby} />
-            <Route path="/game" component={Game} />
+            <Route path="/four-five-foe/" exact component={Home} />
+            <Route path="/four-five-foe/lobby" component={Lobby} />
+            <Route path="/four-five-foe/game" component={Game} />
             <Instructions />
           </Router>
         </PlayerProvider>

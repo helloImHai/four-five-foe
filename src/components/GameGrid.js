@@ -65,7 +65,7 @@ export default function GameGrid() {
         opponentDisconnected: true,
         playerNumber: 0,
       }));
-      history.push("/lobby");
+      history.push("/four-five-foe/lobby");
     });
     return () => socket.off();
   }, [socket, setPlayerState, history]);

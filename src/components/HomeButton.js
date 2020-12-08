@@ -9,7 +9,7 @@ export default function HomeButton() {
   const newSocket = useNewSocket();
 
   function handleHomeClick() {
-    history.push("/");
+    history.push("/four-five-foe/");
     socket.disconnect();
     newSocket();
   }
