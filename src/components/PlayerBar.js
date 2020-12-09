@@ -3,14 +3,14 @@ import { Paper, Grid, Typography } from "@material-ui/core";
 import { usePlayerState } from "../contexts/PlayerProvider";
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ palette }) => ({
   player: {
     height: "45px",
     paddingTop: 5,
   },
   current: {
     paddingTop: 5,
-    background: "#FFB6C1",
+    background: palette.success.main,
   },
 }));
 

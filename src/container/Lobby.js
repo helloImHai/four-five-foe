@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Box, Container, Grid } from "@material-ui/core";
+import { Button, Box, Container, Grid, Typography } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import {
   usePlayerState,
@@ -9,20 +9,27 @@ import { useSocket } from "../contexts/SocketProvider";
 import PlayerBar from "../components/PlayerBar";
 import HomeButton from "../components/HomeButton";
 import CustomDialogue from "../components/CustomDialogue";
+import Instructions from "../components/Instructions";
 
-function WaitingPrompt() {
+const TEXT = {
+  waiting: {
+    title: "Waiting for Player 2...",
+    details: "Get a friend to join this room!",
+  },
+  ready: {
+    title: "We're all set!...",
+    details: "Let's get this party started!",
+  },
+};
+
+function Prompt({ state }) {
+  const text = TEXT[state];
   return (
     <>
-      <h3>Waiting for Player 2...</h3>
-      <p>Get a friend to join this room!</p>
-    </>
-  );
-}
-function ReadyPrompt() {
-  return (
-    <>
-      <h3>We're all set!</h3>
-      <p>Let's get this party started!</p>
+      <Typography variant="h6" color="textPrimary">
+        {text.title}
+      </Typography>
+      <Typography color="textPrimary">{text.details}</Typography>
     </>
   );
 }
@@ -35,6 +42,12 @@ export default function Lobby() {
   const { name, gameId } = usePlayerState();
   const playerState = usePlayerState();
   const setPlayerState = usePlayerStateUpdate();
+
+  useEffect(() => {
+    if (playerState.gameId === "") {
+      history.push("/four-five-foe");
+    }
+  }, [history, playerState]);
 
   useEffect(() => {
     if (socket == null) return;
@@ -64,7 +77,6 @@ export default function Lobby() {
 
   return (
     <Container maxWidth="md">
-      <Box m={10} />
       <CustomDialogue
         isOpen={playerState.opponentDisconnected}
         setIsOpen={() =>
@@ -80,9 +92,17 @@ export default function Lobby() {
           {players == null ? "" : <PlayerBar players={players} />}
         </Grid>
         <Grid item>
-          <h1>Hi {`${name}`}!</h1>
-          {isReady ? <ReadyPrompt /> : <WaitingPrompt />}
-          <h3>Game ID: {`${gameId}`}</h3>
+          <Typography variant="h3" color="textPrimary">
+            Hi {`${name}`}!
+          </Typography>
+          <Box m={1} />
+
+          <Prompt state={isReady ? "ready" : "waiting"} />
+
+          <Box m={1} />
+          <Typography variant="h5" color="textPrimary">
+            Game ID: <strong>{`${gameId}`}</strong>
+          </Typography>
         </Grid>
 
         <Grid item>
@@ -103,6 +123,7 @@ export default function Lobby() {
           </Box>
         </Grid>
       </Grid>
+      <Instructions />
     </Container>
   );
 }

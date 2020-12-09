@@ -18,6 +18,8 @@ import {
 import CustomDialogue from "../components/CustomDialogue";
 import { makeStyles } from "@material-ui/core/styles";
 import { Edit } from "@material-ui/icons";
+import LoadingScreen from "../components/LoadingScreen";
+import Instructions from "../components/Instructions";
 
 export default function Home() {
   const history = useHistory();
@@ -50,9 +52,10 @@ export default function Home() {
     return () => socket.off();
   }, [socket, hasSetName, setPlayerState, playerState, history]);
 
-  return (
+  return socket == null ? (
+    <LoadingScreen />
+  ) : (
     <Container maxWidth="md">
-      <Box m={10} />
       <CustomDialogue
         isOpen={isIntroOpen}
         setIsOpen={setIsIntroOpen}
@@ -66,20 +69,21 @@ export default function Home() {
 
       <NameScreen hasSetName={hasSetName} />
       {hasSetName ? <GameOptions /> : ""}
+      <Instructions />
     </Container>
   );
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   gameTypePaper: {
     minHeight: 170,
     padding: 20,
     "&:hover": {
-      backgroundColor: "#fffafa",
-      boxShadow: "3px 7px #888888;",
+      backgroundColor: theme.palette.action.hover,
+      boxShadow: `3px 4px ${theme.palette.background.default};`,
     },
   },
-});
+}));
 
 function GameOptions() {
   const socket = useSocket();
@@ -181,7 +185,9 @@ function NameScreen({ hasSetName }) {
     <>
       {!hasSetName ? (
         <>
-          <Typography variant="h3">Hello, what's your name?</Typography>
+          <Typography variant="h3" color="textPrimary">
+            Hello, what's your name?
+          </Typography>
           <Box m={3} />
           <TextField
             xs={4}
@@ -197,7 +203,9 @@ function NameScreen({ hasSetName }) {
         </>
       ) : (
         <Box display="flex" flexDirection="row">
-          <Typography variant="h3">Hello, {playerState.name}</Typography>
+          <Typography variant="h3" color="textPrimary">
+            Hello, {playerState.name}
+          </Typography>
           <Box>
             <IconButton size="small" onClick={resetName}>
               <Edit />

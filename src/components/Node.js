@@ -2,35 +2,40 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 
-const useStyles = makeStyles({
+const PLAYER = { 0: "x", "-1": "_", 1: "o" };
+
+const useStyles = makeStyles(({ palette }) => ({
   unpicked: {
     borderRadius: "0px",
-    color: "rgba(0, 0, 0, 0)",
+    color: palette.background.default,
     "&:disabled": {
-      color: "rgba(0, 0, 0, 0)",
+      color: palette.background.default,
+    },
+    "&:hover": {
+      color: "rgb(0,0,0,0)",
     },
   },
   picked: {
     borderRadius: "0px",
     "&:disabled": {
-      color: "#333",
+      color: palette.text.primary,
     },
   },
   winningCell: {
     borderRadius: "0px",
     "&:disabled": {
-      backgroundColor: "#98FB98",
-      color: "#333",
+      backgroundColor: palette.success.light,
+      color: palette.text.primary,
     },
   },
   lastMove: {
     borderRadius: "0px",
     "&:disabled": {
-      backgroundColor: "#FDFD96",
-      color: "#333",
+      backgroundColor: "#ffb6c1",
+      color: palette.text.primary,
     },
   },
-});
+}));
 
 export default function Node(props) {
   const classes = useStyles();
@@ -57,7 +62,7 @@ export default function Node(props) {
       className={cellType}
       style={{ width: "100%" }}
     >
-      {player === 0 ? "x" : "o"}
+      {PLAYER[player]}
     </IconButton>
   );
 }

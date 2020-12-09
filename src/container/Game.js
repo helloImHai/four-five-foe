@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Container } from "@material-ui/core";
 import GameGrid from "../components/GameGrid.js";
 import { makeStyles } from "@material-ui/core/styles";
+import Instructions from "../components/Instructions";
 
 const useStyles = makeStyles((theme) => ({
   indexContainer: {
@@ -14,14 +15,12 @@ export default function Game() {
   const classes = useStyles();
   return (
     <div>
-      <Box className={classes.game} bgcolor="background.default">
+      <Box className={classes.game}>
         <Container className={classes.indexContainer} maxWidth="lg">
-          <br />
-          <br />
-          <br />
           <GameGrid />
         </Container>
       </Box>
+      <Instructions />
     </div>
   );
 }

@@ -17,13 +17,14 @@ import {
 import PlayerBar from "./PlayerBar";
 import HomeButton from "./HomeButton";
 import { useHistory } from "react-router-dom";
+import LoadingScreen from "./LoadingScreen";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(({ palette }) => ({
   gamegrid: {
     overflowX: "auto",
     maxHeight: "60vh",
     border: 5,
-    borderColor: "#000",
+    borderColor: palette.text.secondary,
     borderStyle: "solid",
     borderRadius: 5,
   },
@@ -39,7 +40,7 @@ const useStyles = makeStyles({
     borderColor: "#aaa",
     borderStyle: "solid",
   },
-});
+}));
 
 export default function GameGrid() {
   const classes = useStyles();
@@ -50,6 +51,12 @@ export default function GameGrid() {
   const renderCount = useRef(1);
   const socket = useSocket();
   const history = useHistory();
+
+  useEffect(() => {
+    if (playerState.gameId === "") {
+      history.push("/four-five-foe");
+    }
+  }, [history, playerState]);
 
   /**
    * Set up change in state
@@ -109,7 +116,7 @@ export default function GameGrid() {
   }
 
   return gameGrid == null ? (
-    <div>Loading...</div>
+    <LoadingScreen />
   ) : (
     <Container maxWidth="md">
       <PlayerBar players={players} currentPlayer={currentPlayer} />

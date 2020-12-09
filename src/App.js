@@ -1,33 +1,38 @@
-import "./App.css";
 import Game from "./container/Game.js";
 import Home from "./container/Home.js";
 import Lobby from "./container/Lobby.js";
-import Instructions from "./components/Instructions";
 import { SocketProvider } from "./contexts/SocketProvider.js";
 import { PlayerProvider } from "./contexts/PlayerProvider.js";
+import { CustomThemeProvider } from "./contexts/CustomThemeProvider";
+import DarkThemeSwitch from "./components/DarkThemeSwitch";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
+import { Box } from "@material-ui/core";
 
-const theme = createMuiTheme({
-  palette: {
-    type: "light",
-  },
-});
+const useStyle = makeStyles({ main: { minHeight: "90vh" } });
 
 function App() {
+  const classes = useStyle();
   return (
-    <ThemeProvider theme={theme}>
+    <CustomThemeProvider>
       <SocketProvider>
         <PlayerProvider>
-          <Router>
-            <Route path="/four-five-foe/" exact component={Home} />
-            <Route path="/four-five-foe/lobby" component={Lobby} />
-            <Route path="/four-five-foe/game" component={Game} />
-            <Instructions />
-          </Router>
+          <Box
+            bgcolor="background.default"
+            paddingTop={"10vh"}
+            className={classes.main}
+          >
+            <DarkThemeSwitch />
+            <Router>
+              <Route path="/four-five-foe/" exact component={Home} />
+              <Route path="/four-five-foe/lobby" component={Lobby} />
+              <Route path="/four-five-foe/game" component={Game} />
+            </Router>
+            {/* </Paper> */}
+          </Box>
         </PlayerProvider>
       </SocketProvider>
-    </ThemeProvider>
+    </CustomThemeProvider>
   );
 }
 
