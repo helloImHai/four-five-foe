@@ -31,12 +31,12 @@ const MODAL_STATE = {
   },
   win: {
     title: "Ezpz lmn sqzy!",
-    message: `Click New Game to play again!`,
+    message: `Get 'em again next time. Click New Game to play again!`,
     closingText: "Nice",
   },
   lose: {
-    title: "Well, you win some, you lose some.",
-    message: `Click New Game to play again!`,
+    title: "Win some, lose some.",
+    message: `You'll get it next time. Click New Game to play again!`,
     closingText: "😢",
   },
 };
