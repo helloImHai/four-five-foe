@@ -49,6 +49,11 @@ export default function Home() {
     socket.on("join_room_failure", () => {
       setIsJoinFail(true);
     });
+
+    socket.on("local_game_started", (payload) => {
+      setPlayerState((playerState) => ({ ...playerState, gameId: payload }));
+      history.push("/four-five-foe/localgame");
+    });
     return () => socket.off();
   }, [socket, hasSetName, setPlayerState, playerState, history]);
 
@@ -76,7 +81,7 @@ export default function Home() {
 
 const useStyles = makeStyles((theme) => ({
   gameTypePaper: {
-    minHeight: 170,
+    minHeight: 180,
     padding: 20,
     "&:hover": {
       backgroundColor: theme.palette.action.hover,
@@ -106,19 +111,29 @@ function GameOptions() {
     }));
     socket.emit("join_room", gameIdRef.current.value);
   }
+
+  function startLocalGame() {
+    setPlayerState((playerState) => ({
+      ...playerState,
+      playerNumber: 0,
+    }));
+    socket.emit("create_local_room");
+  }
+
   return (
-    <Grid container spacing={3}>
-      <Grid item xs={6}>
+    <Grid container spacing={2}>
+      <Grid item xs={12} sm={6}>
         <Paper className={classes.gameTypePaper} elevation={5}>
-          <Typography variant="h4">Create a new game</Typography>
+          <Typography variant="h4">Create new game</Typography>
           <Box m={3} />
           <Typography>
-            Click on this to create a new game and invite a friend to join you!
+            Choose this to create a new online game and invite a friend to join
+            you!
           </Typography>
           <Box m={3} />
           <Button
             variant="contained"
-            color="primary"
+            color="secondary"
             fullWidth
             onClick={newGame}
           >
@@ -127,7 +142,7 @@ function GameOptions() {
         </Paper>
       </Grid>
 
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <Paper className={classes.gameTypePaper} elevation={5}>
           <Typography variant="h4">Join a game</Typography>
           <Box m={3} />
@@ -143,11 +158,31 @@ function GameOptions() {
           <Box m={3} />
           <Button
             fullWidth
-            variant="contained"
+            variant="outlined"
             color="secondary"
             onClick={joinGame}
           >
             Join Game
+          </Button>
+        </Paper>
+      </Grid>
+
+      <Grid item xs={12} sm={6}>
+        <Paper className={classes.gameTypePaper} elevation={5}>
+          <Typography variant="h4">Start local game</Typography>
+          <Box m={3} />
+          <Typography>
+            Choose this if you're hanging out with a friend and you guys have
+            nothing better to do.
+          </Typography>
+          <Box m={3} />
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            onClick={startLocalGame}
+          >
+            Start game
           </Button>
         </Paper>
       </Grid>

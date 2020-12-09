@@ -39,6 +39,16 @@ const MODAL_STATE = {
     message: `You'll get it next time. Click New Game to play again!`,
     closingText: "😢",
   },
+  0: {
+    title: "X Won!",
+    message: `Ezpz lmn sqzy! Click New Game to play again!`,
+    closingText: "Nice",
+  },
+  1: {
+    title: "O Won!",
+    message: `Ezpz lmn sqzy! Click New Game to play again!`,
+    closingText: "Nice",
+  },
 };
 
 const styles = (theme) => ({

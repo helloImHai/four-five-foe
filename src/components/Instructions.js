@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { TertiaryButton } from "./TertiaryButton";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
@@ -22,27 +23,6 @@ const styles = (theme) => ({
     color: theme.palette.grey[500],
   },
 });
-
-const BootstrapButton = withStyles({
-  root: {
-    fontSize: 16,
-    padding: "6px 12px",
-    border: "1px solid",
-    lineHeight: 1.5,
-    backgroundColor: "#f9a602",
-    borderColor: "#f9a602",
-    "&:hover": {
-      backgroundColor: "#D68E22",
-      borderColor: "#D68E02",
-      boxShadow: "none",
-    },
-    "&:active": {
-      boxShadow: "none",
-      backgroundColor: "#FEC34E",
-      borderColor: "#FEC34E",
-    },
-  },
-})(Button);
 
 const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
@@ -85,14 +65,19 @@ export default function Instructions() {
     <div>
       <Box m={3} />
       {!isOpen ? (
-        <Box display="flex" flexDirection="row" justifyContent="center">
-          <BootstrapButton
+        <Box
+          display="flex"
+          flexDirection="row"
+          justifyContent="center"
+          paddingBottom={3}
+        >
+          <TertiaryButton
             variant="contained"
             color="primary"
             onClick={() => setIsOpen(true)}
           >
             Instructions
-          </BootstrapButton>
+          </TertiaryButton>
         </Box>
       ) : (
         <Dialog

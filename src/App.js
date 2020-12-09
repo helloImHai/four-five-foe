@@ -1,4 +1,5 @@
 import Game from "./container/Game.js";
+import LocalGame from "./container/LocalGame.js";
 import Home from "./container/Home.js";
 import Lobby from "./container/Lobby.js";
 import { SocketProvider } from "./contexts/SocketProvider.js";
@@ -27,6 +28,7 @@ function App() {
               <Route path="/four-five-foe/" exact component={Home} />
               <Route path="/four-five-foe/lobby" component={Lobby} />
               <Route path="/four-five-foe/game" component={Game} />
+              <Route path="/four-five-foe/localgame" component={LocalGame} />
             </Router>
             {/* </Paper> */}
           </Box>
