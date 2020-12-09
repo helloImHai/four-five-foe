@@ -18,6 +18,7 @@ import PlayerBar from "./PlayerBar";
 import HomeButton from "./HomeButton";
 import { useHistory } from "react-router-dom";
 import LoadingScreen from "./LoadingScreen";
+import CustomDialogue from "./CustomDialogue";
 
 const useStyles = makeStyles(({ palette }) => ({
   gamegrid: {
@@ -45,6 +46,8 @@ const useStyles = makeStyles(({ palette }) => ({
 export default function GameGrid() {
   const classes = useStyles();
   const [gameState, setGameState] = useState({});
+  const [didWin, setDidWin] = useState(false);
+  const [didLose, setDidLose] = useState(false);
   const { gameGrid, currentPlayer, isGameOver, players } = gameState;
   const playerState = usePlayerState();
   const setPlayerState = usePlayerStateUpdate();
@@ -76,6 +79,20 @@ export default function GameGrid() {
     });
     return () => socket.off();
   }, [socket, setPlayerState, history]);
+
+  /**
+   * Congratulate winner / notify loser
+   */
+  useEffect(() => {
+    if (!isGameOver) {
+      return;
+    }
+    if (currentPlayer === playerState.playerNumber) {
+      setDidWin(true);
+    } else {
+      setDidLose(true);
+    }
+  }, [isGameOver, currentPlayer, setDidWin, setDidLose, playerState]);
 
   /**
    * Render count
@@ -119,8 +136,9 @@ export default function GameGrid() {
     <LoadingScreen />
   ) : (
     <Container maxWidth="md">
+      <CustomDialogue isOpen={didWin} setIsOpen={setDidWin} type="win" />
+      <CustomDialogue isOpen={didLose} setIsOpen={setDidLose} type="lose" />
       <PlayerBar players={players} currentPlayer={currentPlayer} />
-      <Box m={2} />
       <Grid container className={classes.gamegrid}>
         <Table className={classes.table}>
           <TableBody className={classes.tableBody}>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Paper, Grid, Typography } from "@material-ui/core";
+import { Box, Paper, Grid, Typography } from "@material-ui/core";
 import { usePlayerState } from "../contexts/PlayerProvider";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -41,17 +41,25 @@ export default function PlayerBar({ players, currentPlayer }) {
   }
 
   return (
-    <Grid container direction="row" justify="space-between" alignItems="center">
-      <Grid item xs={5} sm={3}>
-        <Paper className={`${classes.player} ${heroClass}`} elevation={5}>
-          <Typography variant="h4">{heroName}</Typography>
-        </Paper>
+    <>
+      <Grid
+        container
+        direction="row"
+        justify="space-between"
+        alignItems="center"
+      >
+        <Grid item xs={5} sm={3}>
+          <Paper className={`${classes.player} ${heroClass}`} elevation={5}>
+            <Typography variant="h4">{heroName}</Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={5} sm={3}>
+          <Paper className={`${classes.player} ${villainClass}`} elevation={5}>
+            <Typography variant="h4">{villainName}</Typography>
+          </Paper>
+        </Grid>
       </Grid>
-      <Grid item xs={5} sm={3}>
-        <Paper className={`${classes.player} ${villainClass}`} elevation={5}>
-          <Typography variant="h4">{villainName}</Typography>
-        </Paper>
-      </Grid>
-    </Grid>
+      <Box m={2} />
+    </>
   );
 }

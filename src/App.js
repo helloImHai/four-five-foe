@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
 
-const useStyle = makeStyles({ main: { minHeight: "90vh" } });
+const useStyle = makeStyles({ main: { minHeight: "95vh" } });
 
 function App() {
   const classes = useStyle();
@@ -19,7 +19,7 @@ function App() {
         <PlayerProvider>
           <Box
             bgcolor="background.default"
-            paddingTop={"10vh"}
+            paddingTop="5vh"
             className={classes.main}
           >
             <DarkThemeSwitch />
