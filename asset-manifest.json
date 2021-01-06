@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/four-five-foe/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/four-five-foe/static/js/main.c83efc9f.chunk.js",
-    "main.js.map": "/four-five-foe/static/js/main.c83efc9f.chunk.js.map",
+    "main.js": "/four-five-foe/static/js/main.bc3003c6.chunk.js",
+    "main.js.map": "/four-five-foe/static/js/main.bc3003c6.chunk.js.map",
     "runtime-main.js": "/four-five-foe/static/js/runtime-main.1f279b6f.js",
     "runtime-main.js.map": "/four-five-foe/static/js/runtime-main.1f279b6f.js.map",
-    "static/js/2.09d3b128.chunk.js": "/four-five-foe/static/js/2.09d3b128.chunk.js",
-    "static/js/2.09d3b128.chunk.js.map": "/four-five-foe/static/js/2.09d3b128.chunk.js.map",
+    "static/js/2.03b800d1.chunk.js": "/four-five-foe/static/js/2.03b800d1.chunk.js",
+    "static/js/2.03b800d1.chunk.js.map": "/four-five-foe/static/js/2.03b800d1.chunk.js.map",
     "index.html": "/four-five-foe/index.html",
     "static/css/main.6dea0f05.chunk.css.map": "/four-five-foe/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.09d3b128.chunk.js.LICENSE.txt": "/four-five-foe/static/js/2.09d3b128.chunk.js.LICENSE.txt"
+    "static/js/2.03b800d1.chunk.js.LICENSE.txt": "/four-five-foe/static/js/2.03b800d1.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.1f279b6f.js",
-    "static/js/2.09d3b128.chunk.js",
+    "static/js/2.03b800d1.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.c83efc9f.chunk.js"
+    "static/js/main.bc3003c6.chunk.js"
   ]
 }
