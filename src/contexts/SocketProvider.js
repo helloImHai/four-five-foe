@@ -16,7 +16,17 @@ export function useNewSocket() {
 
 export function SocketProvider({ children }) {
   const [socket, setSocket] = useState();
+  function isSleepTime() {
+    let currentHour = new Date().getUTCHours();
+    return currentHour >= 15;
+  }
   function initialiseSocket() {
+    if (isSleepTime()) {
+      alert(
+        "Being a broke student, I can't keep the game server running 24/7. The server will be back online at 8AM Singapore time."
+      );
+      return null;
+    }
     const newSocket = openSocket(serverUrl, {
       transports: ["websocket"],
     });
