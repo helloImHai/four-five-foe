@@ -28,9 +28,16 @@ export default function Home() {
   const playerState = usePlayerState();
   const [isJoinFail, setIsJoinFail] = useState(false);
   const [isIntroOpen, setIsIntroOpen] = useState(true);
+  const [isSleeping, setIsSleeping] = useState(false);
   const hasSetName = playerState.name !== "";
 
   useEffect(() => {
+    // Check if past bedtime
+    if (new Date().getUTCHours() >= 17) {
+      console.log("Sleeping");
+      setIsSleeping(true);
+    }
+
     if (socket == null) return;
     if (hasSetName) {
       setIsIntroOpen(false);
@@ -58,7 +65,14 @@ export default function Home() {
   }, [socket, hasSetName, setPlayerState, playerState, history]);
 
   return socket == null ? (
-    <LoadingScreen />
+    <>
+      <LoadingScreen />
+      <CustomDialogue
+        isOpen={isSleeping}
+        setIsOpen={setIsSleeping}
+        type="sleeping"
+      />
+    </>
   ) : (
     <Container maxWidth="md">
       <CustomDialogue

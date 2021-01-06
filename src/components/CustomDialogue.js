@@ -39,6 +39,11 @@ const MODAL_STATE = {
     message: `You'll get it next time. Click New Game to play again!`,
     closingText: "😢",
   },
+  sleeping: {
+    title: "Server is sleeping",
+    message: `Being a broke student, I am unable to keep the server running 24/7. Please check back again after 8AM Singapore Time.`,
+    closingText: "Goodnight!",
+  },
   0: {
     title: "X Won!",
     message: `Ezpz lmn sqzy! Click New Game to play again!`,

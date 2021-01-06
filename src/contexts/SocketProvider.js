@@ -22,9 +22,6 @@ export function SocketProvider({ children }) {
   }
   function initialiseSocket() {
     if (isSleepTime()) {
-      alert(
-        "Being a broke student, I can't keep the game server running 24/7. The server will be back online at 8AM Singapore time."
-      );
       return null;
     }
     const newSocket = openSocket(serverUrl, {
