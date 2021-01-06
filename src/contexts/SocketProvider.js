@@ -18,7 +18,7 @@ export function SocketProvider({ children }) {
   const [socket, setSocket] = useState();
   function isSleepTime() {
     let currentHour = new Date().getUTCHours();
-    return currentHour >= 15;
+    return currentHour >= 17;
   }
   function initialiseSocket() {
     if (isSleepTime()) {
