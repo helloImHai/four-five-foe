@@ -41,7 +41,7 @@ const MODAL_STATE = {
   },
   sleeping: {
     title: "Server is sleeping",
-    message: `Being a broke student, I am unable to keep the server running 24/7. Please check back again after 8AM Singapore Time.`,
+    message: `Thanks for visiting my website! Please come back again tomorrow morning!`,
     closingText: "Goodnight!",
   },
   0: {
